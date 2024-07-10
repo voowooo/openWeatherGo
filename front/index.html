@@ -8,9 +8,38 @@
 </head>
 <body>
     <div class="settings" id="settings">
-        <input type="text" id="inputCity">
-        <button onclick="UserChooseCity()">ok</button>
-        <button onclick="closeWIN('settings')">close</button>
+        <div class="settings-header">
+            <h1>Settings</h1>
+        </div>
+        <div class="settings-body">
+            <div class="settings-sector">
+                <input type="text" id="inputCity" class="input-text">
+                <div class="settings-sector-contorll">
+                    <button onclick="UserChooseCity();">ok</button>
+                    <select name="" id="" class="selector">
+                        <option value="">Minsk</option>
+                        <option value="">Tbilisi</option>
+                    </select>
+                </div>
+            </div>
+            <div class="settings-sector">
+                <div class="settings-item">
+                    <input type="checkbox" checked class="checkbox" id="fellsLikeCheck" onclick="showInfoItems()">
+                    <h3>feels like</h3>
+                </div>
+                <div class="settings-item">
+                    <input type="checkbox" checked class="checkbox" id="pressureCheck" onclick="showInfoItems()">
+                    <h3>pressure</h3>
+                </div>
+                <div class="settings-item">
+                    <input type="checkbox" checked class="checkbox" id="humidCheck" onclick="showInfoItems()">
+                    <h3>humidity</h3>
+                </div>
+            </div>
+        </div>
+        <div class="settings-footter">
+            <button onclick="closeWIN('settings')" class="closeButton">close</button>
+        </div>
     </div>
     <header>
         <h1>Weather in</h1>
@@ -21,23 +50,23 @@
         <h1 id="description">description</h1>
     </div>
     <div class="body">
-        <div class="body-item">
+        <div class="body-item" id="tempDiv">
             <img src="img/airTemp.png" alt="temp" class="icon">
             <h1 id="temp"></h1>
         </div>
-        <div class="body-item">
+        <div class="body-item" id="feelingDiv">
             <img src="img/temp.png" alt="feeling_temp" class="icon">
             <h1 id="feeling"></h1>
         </div>
-        <div class="body-item">
+        <div class="body-item" id="windDiv">
             <img src="img/wind.png" alt="wind" class="icon">
             <h1 id="wind"></h1>
         </div>
-        <div class="body-item">
+        <div class="body-item" id="pressureDiv">
             <img src="img/pressure.png" alt="pressure" class="icon">
             <h1 id="pressure"></h1>
         </div>
-        <div class="body-item">
+        <div class="body-item" id="humidDiv">
             <img src="img/humid.png" alt="humid" class="icon">
             <h1 id="humid"></h1>
         </div>

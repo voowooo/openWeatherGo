@@ -44,16 +44,17 @@ async function changeCity(what) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ City: what }) // Измените значение переменной здесь
+        body: JSON.stringify({ City: what })
     });
 
     console.log('resp' + response);
 
     if (response.ok) {
-        alert('Variable changed successfully');
+        // alert('Variable changed successfully');
     } else {
-        alert('Error changing variable');
+        // alert('Error changing variable');
     }
+    upd();
 }
 
 // changeCity()
@@ -96,3 +97,30 @@ function closeWIN(what){
     }
 }
 
+function showInfoItems(){
+    var fellsLike = document.getElementById('fellsLikeCheck');
+    var fellsLikeDiv = document.getElementById('feelingDiv');
+    var pressure = document.getElementById('pressureCheck');
+    var pressureDiv = document.getElementById('pressureDiv');
+    var humid = document.getElementById('humidCheck');
+    var humidDiv = document.getElementById('humidDiv');
+    if (fellsLike.checked){
+        fellsLikeDiv.style.display = 'flex';
+    } else {
+        fellsLikeDiv.style.display = 'none';
+    }
+    if (pressure.checked){
+        pressureDiv.style.display = 'flex';
+    } else {
+        pressureDiv.style.display = 'none';
+    }
+    if (humid.checked){
+        humidDiv.style.display = 'flex';
+    } else {
+        humidDiv.style.display = 'none';
+    }
+}
+
+function upd(){
+    location.reload();    
+}
