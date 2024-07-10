@@ -33,6 +33,30 @@ async function fetchWeather() {
 
 fetchWeather();
 
+function UserChooseCity(){
+    var what = document.getElementById('inputCity').value;
+    changeCity(what);
+}
+
+async function changeCity(what) {
+    const response = await fetch('http://localhost:8080/setCity', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ City: what }) // Измените значение переменной здесь
+    });
+
+    console.log('resp' + response);
+
+    if (response.ok) {
+        alert('Variable changed successfully');
+    } else {
+        alert('Error changing variable');
+    }
+}
+
+// changeCity()
 
 var icon = document.getElementById('weatherIcon');
 
@@ -51,3 +75,24 @@ function changeWeatherIcon(){
         icon.src = 'img/weather/error.png';
     }
 }
+
+// function changeCity(){
+//     console.log('change city');
+// }
+
+function openWIN(what){
+    if (what == 'settings'){
+        document.getElementById('settings').style.display = 'flex';
+    } else {
+        console.log('open error')
+    }
+}
+
+function closeWIN(what){
+    if (what == 'settings'){
+        document.getElementById('settings').style.display = 'none';
+    } else{
+        console.log('close error')
+    }
+}
+

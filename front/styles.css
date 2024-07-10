@@ -52,3 +52,18 @@ img{
     display: flex;
     align-items: center;
 }
+
+.city {
+    transition: 0.3s;
+}
+
+.city:hover {
+    transition: 0.3s;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.settings {
+    transition: 0.5s;
+    display: none;
+}

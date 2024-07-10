@@ -7,7 +7,9 @@ import (
 )
 
 const apiKey = "49b5fe91ea43a79ce87eac61ec479b13"
-const city = "minsk"
+
+var city string = "minsk"
+
 const units = "metric"
 
 type WeatherResponse struct {
@@ -24,6 +26,39 @@ type WeatherResponse struct {
 		Speed float64 `json:"speed"`
 	} `json:"wind"`
 	Name string `json:"name"`
+}
+
+func changeCity(w http.ResponseWriter, r *http.Request) {
+	// Handle preflight request for CORS
+	if r.Method == http.MethodOptions {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+
+	fmt.Println("changecityFunc")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-Type", "application/json")
+
+	var data map[string]string
+	err := json.NewDecoder(r.Body).Decode(&data)
+	if err != nil {
+		http.Error(w, "err", http.StatusBadRequest)
+		fmt.Println("changecityFunc2")
+		return
+	}
+	fmt.Println("changecityFunc3")
+	if newCity, ok := data["City"]; ok {
+		city = newCity
+		w.WriteHeader(http.StatusOK)
+		fmt.Println("changecityFunc4")
+	} else {
+		http.Error(w, "Invalid input", http.StatusBadRequest)
+		fmt.Println("changecityFunc5")
+	}
+	fmt.Println("changecityFunc6")
 }
 
 func getWeatherData(w http.ResponseWriter, r *http.Request) {
@@ -58,7 +93,7 @@ func getWeatherData(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/weather", getWeatherData)
+	http.HandleFunc("/setCity", changeCity)
 	fmt.Println("Server is listening on port 8080")
 	http.ListenAndServe(":8080", nil)
-	// fmt.Println()
 }
