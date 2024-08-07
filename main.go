@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-const apiKey = "49b5fe91ea43a79ce87eac61ec479b13"
+const apiKey = "OPEN_WEATHER_API_KEY"
 
 var city string = "minsk"
 
